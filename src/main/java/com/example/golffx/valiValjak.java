@@ -17,28 +17,19 @@ public class valiValjak {
     private Scene stseen;
     private FXMLLoader loader;
 
-    ObservableList<String> valikud = FXCollections.observableArrayList("Väljak 1", "Väljak 2");
+    private ObservableList<String> valikud = FXCollections.observableArrayList("Väljak 1", "Väljak 2");
     @FXML
     private ChoiceBox golfivaljakud;
 
     @FXML
     private void initialize(){
-        golfivaljakud.setValue("Väljak 1");
+        golfivaljakud.setValue(valikud.get(0));
         golfivaljakud.setItems(valikud);
     }
 
     @FXML
     private void valiKeppNupp(ActionEvent sündmus) throws IOException {
         loader = new FXMLLoader(GolfMäng.class.getResource("golfiValjak.fxml"));
-        lava =(Stage) ((Node)sündmus.getSource()).getScene().getWindow();
-        stseen = new Scene(loader.load());
-        lava.setScene(stseen);
-        lava.show();
-
-    };
-    @FXML
-    private void valiValijakNupp(ActionEvent sündmus) throws IOException {
-        loader = new FXMLLoader(GolfMäng.class.getResource("valiValjak.fxml"));
         lava =(Stage) ((Node)sündmus.getSource()).getScene().getWindow();
         stseen = new Scene(loader.load());
         lava.setScene(stseen);

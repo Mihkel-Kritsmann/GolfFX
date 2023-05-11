@@ -8,13 +8,14 @@ public class Mängija {
     private double HCP;
     private List<Integer> scorecard;
 
-    private List<Golfikepp> golfikepid;
 
-    public Mängija(String nimi, double HCP, List<Golfikepp> golfikepid) {
+
+    public Mängija(String nimi, double HCP) {
         this.nimi = nimi;
         this.HCP = HCP;
         scorecard = new ArrayList<>();
-        this.golfikepid = golfikepid;
+
+
     }
 
     public double getHCP() {
@@ -29,30 +30,11 @@ public class Mängija {
         }
         return scorecard;
     }
-    public int Maksimaalsepikkuseleidja(String c){
-        for (Golfikepp golfikepp : golfikepid){
-            if (golfikepp.getKepistring().equals(c.toLowerCase())){
-                int hea_look_ulemine = golfikepp.getMaksimaalne_hea_pikkus();
-                return hea_look_ulemine;
-            }
-        }
-        return 0;
-    }
-    public int Minimaalsepikkuseleidja(String c){
-        for (Golfikepp golfikepp : golfikepid){
-            if (golfikepp.getKepistring().equals(c.toLowerCase())){
-                int hea_look_alumine = golfikepp.getMinimaalne_hea_pikkus();
-                return hea_look_alumine;
-            }
-        }
-        return 0;
-    }
-    public boolean golfikeppOlemas(String c){
-        for (Golfikepp golfikepp : golfikepid){
-            if (golfikepp.getKepistring().equals(c.toLowerCase())){
-                return true;
-            }}
-        return false;
+
+    public double löögikaugus (int rajapikkus, Golfikepp golfikepp){
+        return (Math.random() *
+                (golfikepp.getMaksimaalne_hea_pikkus() - golfikepp.getMinimaalne_hea_pikkus())
+                + golfikepp.getMinimaalne_hea_pikkus()) / rajapikkus;
     }
 }
 

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.golffx.valiValjak">
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane alignment="TOP_CENTER" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -24,19 +26,31 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="Tagasi" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#valiKeppNupp" text="Vali kepp" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <ChoiceBox fx:id="golfivaljakud" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Vali golfiväljak" GridPane.columnIndex="1">
+            <ChoiceBox fx:id="golfivaljakud" prefHeight="25.0" prefWidth="173.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="173.0" text="Vali golfiväljak" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
+            <SplitPane prefHeight="160.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#valiKeppNupp" prefHeight="25.0" prefWidth="94.0" text="Alusta Mängu" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Tagasi " GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Button>
          </children>
       </GridPane>
    </center>
    <top>
-      <Pane prefHeight="63.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="48.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
    </top>
    <left>
       <Pane prefHeight="157.0" prefWidth="40.0" BorderPane.alignment="CENTER" />

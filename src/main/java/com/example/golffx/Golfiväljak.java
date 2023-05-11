@@ -12,6 +12,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -23,13 +24,19 @@ public class Golfiväljak implements Initializable {
     private Label radaLabel = new Label("Väljak1");
     @FXML
     private ProgressBar radaBar;
+    @FXML
+    private Label löökLabel;
+    @FXML
+    private Label kaugus;
+
     private Rada rada;
     private Stage lava;
     private Scene stseen;
     private FXMLLoader loader;
     private List<Golfikepp> kepidList;
     private Queue<Rada> rajadList;
-    private Golfikepp valik;
+
+    private Mängija mängija1;
     @FXML
     private void valiValijakNupp(ActionEvent sündmus) throws IOException {
         loader = new FXMLLoader(GolfMäng.class.getResource("valiValjak.fxml"));
@@ -41,10 +48,15 @@ public class Golfiväljak implements Initializable {
     };
     @FXML
     private void golfilöök() throws IOException {
-        radaBar.setProgress(radaBar.getProgress() + 0.1);
-        if (radaBar.getProgress() >= 0.999){
+        double kaugus = mängija1.löögikaugus(rada.getRajapikkus(),kepid.getSelectionModel().getSelectedItem()) * rada.rajapikkus;
+        radaBar.setProgress(radaBar.getProgress() + mängija1.löögikaugus(rada.getRajapikkus(),kepid.getSelectionModel().getSelectedItem()));
+        if (radaBar.getProgress() >= 0.9999){
             vahetaRada();
             radaBar.setProgress(0);
+            löökLabel.setText("Tabasid auku!");
+        }
+        else {
+            löökLabel.setText("Tubli, löögi kaugus oli " + kaugus);
         }
     }
         private void vahetaRada() {
@@ -58,15 +70,30 @@ public class Golfiväljak implements Initializable {
             kepidList = loeGolfikepid("golfikepp.txt");
             rajadList = loeRada("Golfiväljak1.txt");
             rada = rajadList.poll();
+            mängija1 = loeMangija("praeguMängib.txt");
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        kaugus.setText("kaugus august " + rada.rajapikkus);
 
         kepid.getItems().addAll(kepidList);
-        valik = kepid.getSelectionModel().getSelectedItem();
     }
-    public static List<Golfikepp> loeGolfikepid(String failinimi) throws Exception {
+
+    private Mängija loeMangija(String failinimi) {
+        File fail = new File(failinimi);
+        try (Scanner sc = new Scanner(fail,"UTF-8")){
+            String rida = sc.nextLine();
+            String [] tükid = rida.split(",");
+            return new Mängija(tükid[0],Double.parseDouble(tükid[1]));
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(failinimi + " on vales formaadis");
+        }
+
+    }
+
+    public static List<Golfikepp> loeGolfikepid(String failinimi) throws IOException {
         List<Golfikepp> tulemus = new ArrayList<>();
         File fail = new File(failinimi);
         try (Scanner sc = new java.util.Scanner(fail, "UTF-8")) {
@@ -80,10 +107,12 @@ public class Golfiväljak implements Initializable {
 
                 tulemus.add(new Golfikepp(kepistring, maxPikkus, minPikkus));
             }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return tulemus;
     }
-    public static Queue<Rada> loeRada(String failinimi) throws Exception {
+    public static Queue<Rada> loeRada(String failinimi) throws IOException {
         Queue<Rada> tulemus = new LinkedList<>();
         File fail = new File(failinimi);
         try (Scanner sc = new java.util.Scanner(fail, "UTF-8")) {

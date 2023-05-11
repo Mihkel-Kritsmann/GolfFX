@@ -8,10 +8,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GolfMäng extends Application {
-
     public static void main(String[] args) {
         launch(args);
     }
+
 
     @Override
     public void start(Stage peaLava) throws IOException {
