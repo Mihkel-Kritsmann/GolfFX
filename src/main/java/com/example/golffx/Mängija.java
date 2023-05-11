@@ -32,9 +32,14 @@ public class Mängija {
     }
 
     public double löögikaugus (int rajapikkus, Golfikepp golfikepp){
-        return (Math.random() *
-                (golfikepp.getMaksimaalne_hea_pikkus() - golfikepp.getMinimaalne_hea_pikkus())
-                + golfikepp.getMinimaalne_hea_pikkus()) / rajapikkus;
+        double täpsus = 100 - HCP;
+        double juhus = Math.random()* 100 ;
+        if (täpsus > juhus) {return golfikepp.getMaksimaalne_hea_pikkus();}
+        else {return golfikepp.getMinimaalne_hea_pikkus();}
+    }
+
+    public String getNimi() {
+        return nimi;
     }
 }
 

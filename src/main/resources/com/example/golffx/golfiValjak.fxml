@@ -59,17 +59,17 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Label fx:id="löökLabel" prefHeight="17.0" prefWidth="337.0" text="">
+            <Label fx:id="löökLabel" prefHeight="64.0" prefWidth="270.0" text="">
                <font>
-                  <Font size="20.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
-                <Label fx:id="kaugus" alignment="CENTER" prefHeight="63.0" prefWidth="272.0" text="" wrapText="true">
+                <Label fx:id="kaugus" alignment="CENTER" prefHeight="45.0" prefWidth="270.0" text="" wrapText="true">
                     <padding>
                         <Insets left="20.0" top="20.0" />
                     </padding>
                     <font>
-                        <Font size="15.0" />
+                        <Font size="9.0" />
                     </font>
                 </Label>
             </children>
@@ -78,7 +78,7 @@
    <right>
       <VBox prefHeight="308.0" prefWidth="130.0" BorderPane.alignment="CENTER">
          <children>
-                <Label prefHeight="59.0" prefWidth="130.0" text="Löökide arv">
+                <Label fx:id="lookideArv" prefHeight="59.0" prefWidth="130.0" text="Löökide arv: 0">
                     <padding>
                         <Insets left="20.0" top="20.0" />
                     </padding>

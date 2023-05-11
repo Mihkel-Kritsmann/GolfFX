@@ -1,0 +1,8 @@
+Max,22
+Mihkel,30
+xd,2.0
+Mutt,3.5
+x,2.0
+test,53.4
+frank,23.0
+Joosep,1.0

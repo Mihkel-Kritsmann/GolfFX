@@ -28,6 +28,8 @@ public class Golfiväljak implements Initializable {
     private Label löökLabel;
     @FXML
     private Label kaugus;
+    @FXML
+    private Label lookideArv;
 
     private Rada rada;
     private Stage lava;
@@ -35,6 +37,7 @@ public class Golfiväljak implements Initializable {
     private FXMLLoader loader;
     private List<Golfikepp> kepidList;
     private Queue<Rada> rajadList;
+    private int jarg = 0;
 
     private Mängija mängija1;
     @FXML
@@ -53,15 +56,22 @@ public class Golfiväljak implements Initializable {
         if (radaBar.getProgress() >= 0.9999){
             vahetaRada();
             radaBar.setProgress(0);
-            löökLabel.setText("Tabasid auku!");
+            löökLabel.setText("Tabasid auku! Kokku läks " + jarg + " lööki." );
+            lookideArv.setText("Löökide arv: 0");
+            jarg = 0;
         }
         else {
-            löökLabel.setText("Tubli, löögi kaugus oli " + kaugus);
+            löökLabel.setText("Tubli " + mängija1.getNimi() + ", löögi kaugus oli " + kaugus);
+            lookideArv.setText("Löökide arv: " + ++jarg);
         }
     }
         private void vahetaRada() {
         rada = rajadList.poll();
-        radaLabel.setText("Rada nr" + rada.getRajanumber());
+        if (rada == null){
+            radaLabel.setText("Väljak on läbi");
+        }
+        else {
+        radaLabel.setText("Rada nr" + rada.getRajanumber());}
     }
 
     @Override
