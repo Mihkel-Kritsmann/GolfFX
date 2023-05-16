@@ -1,7 +1,5 @@
 package com.example.golffx;
 
-import javafx.stage.Stage;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,13 +19,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
-public class NameAndNumberDisplay extends JFrame {
+public class KäivitaMind extends JFrame {
     private static final long serialVersionUID = 1L;
     private List<String> nimed;
     private List<Double> HCP;
     private int currentIndex;
 
-    public NameAndNumberDisplay() {
+    public KäivitaMind() {
         super("Golfimäng");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
@@ -182,6 +180,6 @@ public class NameAndNumberDisplay extends JFrame {
         setResizable(false);
     }
     public static void main(String[] args) {
-        new NameAndNumberDisplay();
+        new KäivitaMind();
     }}
 

@@ -51,8 +51,8 @@ public class Golfiväljak implements Initializable {
     };
     @FXML
     private void golfilöök() throws IOException {
-        double kaugus = mängija1.löögikaugus(rada.getRajapikkus(),kepid.getSelectionModel().getSelectedItem()) * rada.rajapikkus;
-        radaBar.setProgress(radaBar.getProgress() + mängija1.löögikaugus(rada.getRajapikkus(),kepid.getSelectionModel().getSelectedItem()));
+        double kaugus = mängija1.löögikaugus(rada.getRajapikkus(),kepid.getSelectionModel().getSelectedItem());
+        radaBar.setProgress(radaBar.getProgress() + mängija1.löögikaugus(rada.getRajapikkus(),kepid.getSelectionModel().getSelectedItem())/rada.rajapikkus);
         if (radaBar.getProgress() >= 0.9999){
             vahetaRada();
             radaBar.setProgress(0);
