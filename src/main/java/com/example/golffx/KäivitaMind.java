@@ -94,6 +94,12 @@ public class KäivitaMind extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String selectedName = nameDisplay.getText();
                 String selectedNumber = numberDisplay.getText();
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter("praeguMängib.txt", false))) {
+                    bw.write(selectedName+ "," + selectedNumber);}
+                catch (IOException ex) {
+                    System.err.println("failikirjutamise error " + ex.getMessage());
+                }
+                KäivitaMind.this.dispose();
                 GolfMäng.main(null);
             }
         });

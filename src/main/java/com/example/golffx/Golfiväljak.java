@@ -27,7 +27,7 @@ public class Golfiväljak implements Initializable {
     @FXML
     private Label löökLabel;
     @FXML
-    private Label kaugus;
+    private Label kaugusLabel;
     @FXML
     private Label lookideArv;
 
@@ -52,8 +52,17 @@ public class Golfiväljak implements Initializable {
     @FXML
     private void golfilöök() throws IOException {
         double kaugus = mängija1.löögikaugus(rada.getRajapikkus(),kepid.getSelectionModel().getSelectedItem());
-        radaBar.setProgress(radaBar.getProgress() + mängija1.löögikaugus(rada.getRajapikkus(),kepid.getSelectionModel().getSelectedItem())/rada.rajapikkus);
-        if (radaBar.getProgress() >= 0.9999){
+
+        if ((radaBar.getProgress() + kaugus/rada.rajapikkus ) > 1.02){
+            radaBar.setProgress(Math.abs(radaBar.getProgress() + kaugus/rada.rajapikkus - 2));
+            löökLabel.setText("Pall langes august mööda, löögi kaugus oli " + kaugus);
+            lookideArv.setText("Löökide arv: " + ++jarg);
+            kaugusLabel.setText("Kaugus august " + (Math.round(rada.rajapikkus - radaBar.getProgress()*rada.rajapikkus)));
+
+
+        }
+
+        else if (radaBar.getProgress() + kaugus/rada.rajapikkus >= 0.98 && radaBar.getProgress() + kaugus/rada.rajapikkus <= 1.02){
             vahetaRada();
             radaBar.setProgress(0);
             löökLabel.setText("Tabasid auku! Kokku läks " + jarg + " lööki." );
@@ -61,8 +70,10 @@ public class Golfiväljak implements Initializable {
             jarg = 0;
         }
         else {
+            radaBar.setProgress(radaBar.getProgress() + kaugus/rada.rajapikkus);
             löökLabel.setText("Tubli " + mängija1.getNimi() + ", löögi kaugus oli " + kaugus);
             lookideArv.setText("Löökide arv: " + ++jarg);
+            kaugusLabel.setText("Kaugus august " + (Math.round(rada.rajapikkus - radaBar.getProgress()*rada.rajapikkus)));
         }
     }
         private void vahetaRada() {
@@ -71,7 +82,8 @@ public class Golfiväljak implements Initializable {
             radaLabel.setText("Väljak on läbi");
         }
         else {
-        radaLabel.setText("Rada nr" + rada.getRajanumber());}
+        radaLabel.setText("Rada nr" + rada.getRajanumber());
+        kaugusLabel.setText("kaugus august " + rada.rajapikkus);}
     }
 
     @Override
@@ -85,7 +97,7 @@ public class Golfiväljak implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        kaugus.setText("kaugus august " + rada.rajapikkus);
+        kaugusLabel.setText("kaugus august " + rada.rajapikkus);
 
         kepid.getItems().addAll(kepidList);
     }
