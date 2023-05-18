@@ -55,7 +55,7 @@ public class Golfiväljak implements Initializable {
 
         if ((radaBar.getProgress() + kaugus/rada.rajapikkus ) > 1.02){
             radaBar.setProgress(Math.abs(radaBar.getProgress() + kaugus/rada.rajapikkus - 2));
-            löökLabel.setText("Pall langes august mööda, löögi kaugus oli " + kaugus);
+            löökLabel.setText("Pall langes august mööda, löögi kaugus oli " + Math.round(kaugus));
             lookideArv.setText("Löökide arv: " + ++jarg);
             kaugusLabel.setText("Kaugus august " + (Math.round(rada.rajapikkus - radaBar.getProgress()*rada.rajapikkus)));
 
@@ -65,13 +65,13 @@ public class Golfiväljak implements Initializable {
         else if (radaBar.getProgress() + kaugus/rada.rajapikkus >= 0.98 && radaBar.getProgress() + kaugus/rada.rajapikkus <= 1.02){
             vahetaRada();
             radaBar.setProgress(0);
-            löökLabel.setText("Tabasid auku! Kokku läks " + jarg + " lööki." );
+            löökLabel.setText("Tabasid auku! Kokku läks " + ++jarg + " lööki." );
             lookideArv.setText("Löökide arv: 0");
             jarg = 0;
         }
         else {
             radaBar.setProgress(radaBar.getProgress() + kaugus/rada.rajapikkus);
-            löökLabel.setText("Tubli " + mängija1.getNimi() + ", löögi kaugus oli " + kaugus);
+            löökLabel.setText("Tubli, " + mängija1.getNimi() + ", löögi kaugus oli " + Math.round(kaugus));
             lookideArv.setText("Löökide arv: " + ++jarg);
             kaugusLabel.setText("Kaugus august " + (Math.round(rada.rajapikkus - radaBar.getProgress()*rada.rajapikkus)));
         }

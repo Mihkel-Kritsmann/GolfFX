@@ -31,11 +31,17 @@ public class Mängija {
         return scorecard;
     }
 
-    public double löögikaugus (int rajapikkus, Golfikepp golfikepp){
+    public double löögikaugus (int rajapikkus, Golfikepp golfikepp) {
         double täpsus = 100 - HCP;
-        double juhus = Math.random()* 100 ;
-        if (täpsus > juhus) {return golfikepp.getMaksimaalne_hea_pikkus();}
-        else {return golfikepp.getMinimaalne_hea_pikkus();}
+        double juhus = Math.random() * 100;
+        if (!golfikepp.getKepistring().equals("putter")) {
+            if (täpsus > juhus) {
+                return Math.round(Math.random() * (golfikepp.getMaksimaalne_hea_pikkus() - golfikepp.getMinimaalne_hea_pikkus()) + golfikepp.getMinimaalne_hea_pikkus());
+            } else {
+                return Math.abs(Math.round(Math.random() * (golfikepp.getMinimaalne_hea_pikkus() - golfikepp.getMinimaalne_hea_pikkus() - 10) + golfikepp.getMinimaalne_hea_pikkus() - 10));
+            }
+        }
+        else return Math.round(Math.random() * (golfikepp.getMaksimaalne_hea_pikkus() - golfikepp.getMinimaalne_hea_pikkus()) + golfikepp.getMinimaalne_hea_pikkus());
     }
 
     public String getNimi() {
